@@ -1,6 +1,7 @@
 package com.andikscript.springcachepostgre.service;
 
 import com.andikscript.springcachepostgre.model.Student;
+import com.andikscript.springcachepostgre.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,19 +9,19 @@ import java.util.List;
 @Service
 public class StudentImpl implements StudentService {
 
-    private final StudentService studentService;
+    private final StudentRepository studentRepository;
 
-    public StudentImpl(StudentService studentService) {
-        this.studentService = studentService;
+    public StudentImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     @Override
     public void addStudent(Student student) {
-        studentService.addStudent(student);
+        studentRepository.save(student);
     }
 
     @Override
     public List getAllStudent() {
-        return studentService.getAllStudent();
+        return studentRepository.findAll();
     }
 }
