@@ -12,4 +12,6 @@ public interface StudentService {
     List getAllStudent();
 
     Student getStudentById(UUID id);
+
+    void updateStudent(UUID id, Student student);
 }

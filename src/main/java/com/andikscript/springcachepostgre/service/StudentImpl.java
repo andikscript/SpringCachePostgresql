@@ -5,6 +5,7 @@ import com.andikscript.springcachepostgre.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -29,5 +30,11 @@ public class StudentImpl implements StudentService {
     @Override
     public Student getStudentById(UUID id) {
         return studentRepository.findById(id).get();
+    }
+
+    @Override
+    public void updateStudent(UUID id, Student student) {
+        student.setId(id);
+        studentRepository.save(student);
     }
 }

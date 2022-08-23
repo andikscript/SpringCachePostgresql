@@ -39,4 +39,12 @@ public class StudentController {
                 .status(HttpStatus.OK)
                 .body(studentService.getStudentById(id));
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> updateStudent(@PathVariable(value = "id") UUID id, @RequestBody Student student) {
+        studentService.updateStudent(id, student);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body("update");
+    }
 }
