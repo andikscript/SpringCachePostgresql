@@ -19,32 +19,31 @@ public class StudentImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
-//    @CacheEvict(cacheNames = "addStudent", allEntries = true)
     @Override
     public void addStudent(Student student) {
         studentRepository.save(student);
     }
 
-    @Cacheable(value = "getAllStudent", key = "#root.method.name")
+    @Cacheable(value = "student", key = "#root.method.name")
     @Override
     public List getAllStudent() {
         return studentRepository.findAll();
     }
 
-    @Cacheable(value = "getStudent", key = "#id")
+    @Cacheable(value = "student", key = "#id")
     @Override
     public Student getStudentById(UUID id) {
         return studentRepository.findById(id).get();
     }
 
-//    @CacheEvict(cacheNames = "updateStudent", allEntries = true)
+    @CachePut(value = "student", key = "#id")
     @Override
-    public void updateStudent(UUID id, Student student) {
+    public Student updateStudent(UUID id, Student student) {
         student.setId(id);
-        studentRepository.save(student);
+        return studentRepository.save(student);
     }
 
-//    @CacheEvict(cacheNames = "deleteStudent", allEntries = true)
+    @CacheEvict(value = "student", allEntries = true)
     @Override
     public void deleteStudent(UUID id) {
         studentRepository.deleteById(id);
