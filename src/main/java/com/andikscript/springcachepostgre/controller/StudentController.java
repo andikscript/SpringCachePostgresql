@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping(value = "/api/student")
 public class StudentController {
@@ -32,7 +34,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> getStudentById(@PathVariable(value = "id") String id) {
+    public ResponseEntity<?> getStudentById(@PathVariable(value = "id") UUID id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(studentService.getStudentById(id));

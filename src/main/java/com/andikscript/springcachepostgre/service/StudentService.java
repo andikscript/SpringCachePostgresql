@@ -3,6 +3,7 @@ package com.andikscript.springcachepostgre.service;
 import com.andikscript.springcachepostgre.model.Student;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface StudentService {
 
@@ -10,5 +11,5 @@ public interface StudentService {
 
     List getAllStudent();
 
-    Student getStudentById(String id);
+    Student getStudentById(UUID id);
 }
