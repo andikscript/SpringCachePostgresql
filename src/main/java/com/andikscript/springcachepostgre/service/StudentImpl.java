@@ -2,6 +2,7 @@ package com.andikscript.springcachepostgre.service;
 
 import com.andikscript.springcachepostgre.model.Student;
 import com.andikscript.springcachepostgre.repository.StudentRepository;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@CacheConfig(cacheNames = "studentCache")
 public class StudentImpl implements StudentService {
 
     private final StudentRepository studentRepository;
