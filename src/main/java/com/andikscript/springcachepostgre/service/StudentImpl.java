@@ -2,10 +2,7 @@ package com.andikscript.springcachepostgre.service;
 
 import com.andikscript.springcachepostgre.model.Student;
 import com.andikscript.springcachepostgre.repository.StudentRepository;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
+import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +19,7 @@ public class StudentImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
-    @CacheEvict(cacheNames = "student", allEntries = true)
+//    @CacheEvict(cacheNames = "addStudent", allEntries = true)
     @Override
     public void addStudent(Student student) {
         studentRepository.save(student);
@@ -34,17 +31,20 @@ public class StudentImpl implements StudentService {
         return studentRepository.findAll();
     }
 
+    @Cacheable(value = "getStudent", key = "#id")
     @Override
     public Student getStudentById(UUID id) {
         return studentRepository.findById(id).get();
     }
 
+//    @CacheEvict(cacheNames = "updateStudent", allEntries = true)
     @Override
     public void updateStudent(UUID id, Student student) {
         student.setId(id);
         studentRepository.save(student);
     }
 
+//    @CacheEvict(cacheNames = "deleteStudent", allEntries = true)
     @Override
     public void deleteStudent(UUID id) {
         studentRepository.deleteById(id);
