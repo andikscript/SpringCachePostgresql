@@ -47,4 +47,12 @@ public class StudentController {
                 .status(HttpStatus.CREATED)
                 .body("update");
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> deleteStudentById(@PathVariable(value = "id") UUID id) {
+        studentService.deleteStudent(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("delete");
+    }
 }

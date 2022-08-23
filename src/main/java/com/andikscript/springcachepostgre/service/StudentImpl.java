@@ -37,4 +37,9 @@ public class StudentImpl implements StudentService {
         student.setId(id);
         studentRepository.save(student);
     }
+
+    @Override
+    public void deleteStudent(UUID id) {
+        studentRepository.deleteById(id);
+    }
 }
