@@ -1,11 +1,14 @@
 package com.andikscript.springcachepostgre.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements Serializable {
+
+    private static final long serialVersionUID = 7156526077883281623L;
     @Id
     @Column(name = "id_student", nullable = false)
     @GeneratedValue
