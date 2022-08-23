@@ -24,4 +24,9 @@ public class StudentImpl implements StudentService {
     public List getAllStudent() {
         return studentRepository.findAll();
     }
+
+    @Override
+    public Student getStudentById(String id) {
+        return studentRepository.findById(id).get();
+    }
 }

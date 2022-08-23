@@ -9,4 +9,6 @@ public interface StudentService {
     void addStudent(Student student);
 
     List getAllStudent();
+
+    Student getStudentById(String id);
 }
