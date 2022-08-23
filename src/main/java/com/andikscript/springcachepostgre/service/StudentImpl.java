@@ -2,6 +2,7 @@ package com.andikscript.springcachepostgre.service;
 
 import com.andikscript.springcachepostgre.model.Student;
 import com.andikscript.springcachepostgre.repository.StudentRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class StudentImpl implements StudentService {
         studentRepository.save(student);
     }
 
+    @Cacheable(value = "getAllStudent", key = "#root.method.name")
     @Override
     public List getAllStudent() {
         return studentRepository.findAll();
